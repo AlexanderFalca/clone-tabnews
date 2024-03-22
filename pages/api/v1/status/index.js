@@ -1,3 +1,9 @@
-export default function status(request, response) {
-  return response.status(200).json({ key: "HW" });
+import database from "../../../../infra/database";
+
+async function status(request, response) {
+  const result = await database.query("SELECT 1 + 1 as sum;");
+  console.log(result.rows);
+  response.status(200).json({ key: "HW" });
 }
+
+export default status;
